@@ -1,0 +1,176 @@
+:root{
+    --primary: #393E46;
+    --secondary: #EEEEEE;
+    --tally-mark: #C51605;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("../misc/fonts/Inter-Regular.otf");
+}
+
+@keyframes expand {
+    from{
+        height: 281px;
+    }
+    to{
+        height: 400px;
+    }
+}
+
+@keyframes contract {
+    from{
+        height: 400px;
+    }
+    to{
+        height: 281px;
+    }
+}
+
+@keyframes follow-down {
+    from{
+        top: 33vh;
+    }
+    to{
+        top: 48vh;
+    }
+}
+
+@keyframes follow-up {
+    from{
+        top: 48vh;
+    }
+    to{
+        top: 33vh;
+    }
+}
+
+html{
+    height: 100%;
+}
+
+body{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 25%);
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    box-sizing: border-box;
+    border-radius: 36px;
+    background-color: var(--primary);
+    width: 676px;
+    height: 366px;
+}
+
+.left-container{
+    width: 320px;
+    height: 366px;
+    background-color: white;
+    border-radius: 60px 0 0 60px;
+    margin-left: 17px;
+}
+
+#title{
+    position: relative;
+    font-family: "Inter", sans-serif;
+    font-size: 36px;
+    left: 76px;
+}
+
+#form{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form-row{
+    flex: 1 0 100%;
+    margin-top: 50px;
+}
+
+.form-row label{
+    font-family: "Inter", sans-serif;
+    margin-left: 30px;
+    margin-right: 25px;
+}
+
+.form-row input{
+    font-family: "Inter", sans-serif;
+    appearance: none;
+    border: none;
+    padding: 5px;
+    outline: none;
+}
+
+.tally{
+    position: absolute;
+    top: 24vh;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    left: 47vw;
+    width: 38px;
+    height: 281px;
+    background-color: var(--tally-mark);
+    cursor: pointer;
+}
+
+.left-triangle{
+    position: absolute;
+    top: 33vh;
+    width: 0;
+    height: 0;
+    border-left: 25px solid var(--tally-mark);
+    border-top: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-bottom: 25px solid transparent;
+}
+
+.right-triangle{
+    position: absolute;
+    top: 33vh;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-left: 25px solid transparent;
+    border-top: 25px solid transparent;
+    border-right: 25px solid var(--tally-mark);
+    border-bottom: 25px solid transparent;
+}
+
+#tally-text{
+    position: absolute;
+    top: 16.5vh;
+    right: -18px;
+    color: white;
+    font-size: 30px;
+    rotate: 90deg;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+}
+
+.right-container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 286px;
+    height: 366px;
+    background-color: var(--secondary);
+    border-radius: 0 30px 30px 0;
+    font-size: 30px;
+    font-family: "Inter", sans-serif;
+}
+
+span[class*=lapse-title] {
+    grid-column: span 4;
+    text-align: center;
+}
+
+span[id*=output]{
+    grid-column: span 4;
+    text-align: center;
+}

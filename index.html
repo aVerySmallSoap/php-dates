@@ -1,10 +1,44 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/CSS/index.css">
+    <title>Document</title>
 </head>
 <body>
-$END$
+
+    <div class="container">
+        <div class="left-container">
+            <span id="title">Loan Debt Calculator</span>
+            <form id="form">
+                <div class="form-row">
+                    <label for="loan-start">Loan date:</label>
+                    <input type="date" name="loan-start" id="loan-start">
+                </div>
+                <div class="form-row">
+                    <label for="loan-end">Loan due:</label>
+                    <input type="date" name="loan-end" id="loan-end">
+                </div>
+            </form>
+        </div>
+        <div class="tally">
+            <div class="left-triangle"></div>
+            <div class="right-triangle"></div>
+            <span id="tally-text">Tally!</span>
+        </div>
+        <div class="right-container">
+            <span class="lapse-title-1">Days Lapsed</span>
+            <span id="output-1">0</span>
+            <span class="lapse-title-2">Months Lapsed</span>
+            <span id="output-2">0</span>
+            <span class="lapse-title-3">Years Lapsed</span>
+            <span id="output-3">0</span>
+        </div>
+    </div>
+
+    <script src="/JS/tally-animation.js"></script>
 </body>
 </html>
