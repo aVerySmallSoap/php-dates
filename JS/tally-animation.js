@@ -36,12 +36,25 @@ function formSubmit(e){
     xhr.send("date1="+date1+"&date2="+date2);
     xhr.onload = function () {
         if(xhr.getResponseHeader("content-type") === "application/json"){
+            if(document.querySelector(".spanOut") != null){
+                document.querySelector(".spanOut").remove();
+            }
             let obj = JSON.parse(xhr.responseText);
             document.querySelector("#output-1").innerHTML = obj.day;
             document.querySelector("#output-2").innerHTML = obj.month;
             document.querySelector("#output-3").innerHTML = obj.year;
         }else{
-            console.log(xhr.responseText);
+            if(document.querySelector(".spanOut") === null){
+                let span = document.createElement("span");
+                span.className = "spanOut";
+                span.innerHTML = xhr.responseText;
+                span.style.textAlign = "Center";
+                span.style.flex = "1 0 100%";
+                span.style.marginTop = "10px";
+                span.style.fontSize = "28px";
+                document.querySelector("#form").append(span);
+            }
+
         }
     }
 }

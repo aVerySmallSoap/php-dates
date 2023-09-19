@@ -10,8 +10,8 @@ if(isset($_POST["date1"], $_POST["date2"])){
     $y = ((int) $year < 0) ? $year : 0;
     $m = ((int) $month < 0) ? $month : 0;
     $d = ( (int)$day < 0) ? $day : 0;
-    if($y > 0 || $m > 0 || $d > 0){
-        echo "not due";
+    if($d >= 0 && $m >= 0 && $y >= 0){
+        echo "Loan is not due";
     }else{
         $json = ["year" => abs($y), "month" => abs($m), "day" => abs($d)];
         header("content-type: application/json");
