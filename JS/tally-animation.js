@@ -31,30 +31,42 @@ function formSubmit(e){
     let date1 = document.querySelector("#loan-start").value;
     let date2 = document.querySelector("#loan-end").value;
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "../operations/tally-date.php", true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.send("date1="+date1+"&date2="+date2);
-    xhr.onload = function () {
-        if(xhr.getResponseHeader("content-type") === "application/json"){
-            if(document.querySelector(".spanOut") != null){
-                document.querySelector(".spanOut").remove();
+    if(date1 === "" || date1 === undefined || date2 === "" || date2 === undefined){
+        announce("Please fill out all the fields!", xhr);
+    }else {
+        xhr.open("POST", "../operations/tally-date.php", true);
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhr.send("date1=" + date1 + "&date2=" + date2);
+        xhr.onload = function () {
+            if (xhr.getResponseHeader("content-type") === "application/json") {
+                if (document.querySelector(".spanOut") != null) {
+                    document.querySelector(".spanOut").remove();
+                }
+                let obj = JSON.parse(xhr.responseText);
+                document.querySelector("#output-1").innerHTML = obj.day;
+                document.querySelector("#output-2").innerHTML = obj.month;
+                document.querySelector("#output-3").innerHTML = obj.year;
+            } else {
+                announce(xhr.responseText, xhr);
             }
-            let obj = JSON.parse(xhr.responseText);
-            document.querySelector("#output-1").innerHTML = obj.day;
-            document.querySelector("#output-2").innerHTML = obj.month;
-            document.querySelector("#output-3").innerHTML = obj.year;
-        }else{
-            if(document.querySelector(".spanOut") === null){
-                let span = document.createElement("span");
-                span.className = "spanOut";
-                span.innerHTML = xhr.responseText;
-                span.style.textAlign = "Center";
-                span.style.flex = "1 0 100%";
-                span.style.marginTop = "10px";
-                span.style.fontSize = "28px";
-                document.querySelector("#form").append(span);
-            }
-
         }
+    }
+}
+
+function announce(message, xhr){
+    if(document.querySelector(".spanOut") === null){
+        let span = document.createElement("span");
+        span.className = "spanOut";
+        span.innerHTML = xhr.responseText;
+        span.style.textAlign = "Center";
+        span.style.flex = "1 0 100%";
+        span.style.marginTop = "10px";
+        span.style.fontSize = "28px";
+        document.querySelector("#output-1").innerHTML = "0";
+        document.querySelector("#output-2").innerHTML = "0";
+        document.querySelector("#output-3").innerHTML = "0";
+        document.querySelector("#form").append(span);
+    }else{
+        document.querySelector(".spanOut").innerHTML = message;
     }
 }
